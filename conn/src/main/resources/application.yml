@@ -1,0 +1,50 @@
+#server
+server:
+  port: 80
+  tomcat:
+    max-threads: 1000
+  servlet:
+    context-path: /
+
+#spring 配置
+spring:
+  datasource: #数据源的配置
+#    url: jdbc:mysql:///test?serverTimezone=GMT%2B8&characterEncoding=UTF8
+#    username: root
+#    password: root
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.150.52:1521:pyemr
+    username: ihd
+    password: pyemr
+  thymeleaf: #配置网址的前缀和后缀
+    prefix: classpath:/templates/pages/
+    suffix: .html
+#    prefix: classpath:/templates/pages
+#  mvc:
+#    view:
+#      prefix: classpath:/templates/pages/
+#      suffix: .html
+  aop:
+    proxy-target-class: false
+#Spring mybatis
+mybatis:
+  configuration:
+    default-statement-timeout: 30
+    map-underscore-to-camel-case: true
+  mapper-locations: #mapper文件的所在路径
+    - classpath:/mybatis/mappers/*.xml
+
+logging:
+  level:
+    com.cy: DEBUG
+
+#spring async pool
+async-thread-pool:
+  corePoolSize: 5
+  maxPoolSize: 10
+  keepAliveSeconds: 30
+  queueCapacity: 30
+
+
+
+
